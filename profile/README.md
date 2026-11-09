@@ -1,7 +1,9 @@
-# Colaborating Verviico & Marlerino
+# Verviico × Marlerino
 
-A calm app studio. We weave thoughtful iOS apps on one shared platform.
+Independent iOS apps, shared engineering craft.
 
-- Native Swift & SwiftUI first
-- Every app is its own product: its own design, features and story
-- Shared craft underneath: platform packages, CI, analytics
+- Native Swift and SwiftUI experiences.
+- Each app has its own purpose, design, assets and product story.
+- Shared standards for quality, evidence, privacy and reliable delivery.
+
+We keep product decisions, code review and releases connected without treating a merged change as a shipped product.

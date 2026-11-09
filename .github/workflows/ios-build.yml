@@ -1,31 +1,26 @@
-# Reusable: build, test and policy-check one app from apps-ios.
-# Status: template. Fill the build step once Tuist project is in place.
-name: ios-build
+name: iOS build template
 
 on:
   workflow_call:
     inputs:
       app:
-        description: App folder name under Apps/
         required: true
         type: string
       xcode-version:
         required: false
         type: string
-        default: latest-stable
+        default: 26.0.1
+
+permissions:
+  contents: read
 
 jobs:
-  build-test:
-    runs-on: macos-latest
-    timeout-minutes: 45
+  configuration-required:
+    name: Not configured - no build or release is claimed
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
     steps:
-      - uses: actions/checkout@v4
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: ${{ inputs.xcode-version }}
-      - name: Generate project
-        run: echo "TODO tuist install && tuist generate ${{ inputs.app }} --no-open"
-      - name: Build and test
-        run: echo "TODO xcodebuild test -scheme ${{ inputs.app }} -destination 'platform=iOS Simulator,name=iPhone 17'"
-      - name: Policy check (guideline 2.5.19)
-        run: echo "TODO run factory/scripts/policy-check.sh on the built .app"
+      - name: Stop before unconfigured work or native spend
+        run: |
+          echo '::error::This legacy template is not a configured build/release pipeline. Use the app-local workflow and verify its pinned toolchain, evidence and approvals first.'
+          exit 78

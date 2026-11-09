@@ -1,19 +1,13 @@
-# .github
+# Marlerino · Shared GitHub files
 
-Org-wide files for Softloom Studio.
+Organization profile and shared workflow references for `verviico-marlerino`.
 
-- `profile/README.md`: public org profile.
-- `.github/workflows/ios-build.yml`: reusable build + test + policy check for an app in `apps-ios`.
-- `.github/workflows/ios-release.yml`: reusable TestFlight / App Review release (template, needs secrets).
+- `profile/README.md`: public studio profile.
+- `.github/workflows/ios-build.yml`: **unconfigured legacy template, fail-closed**.
+- `.github/workflows/ios-release.yml`: **unconfigured legacy template, fail-closed**.
 
-Call from another repo:
+The active Predictions checks live in [its own workflows](https://github.com/verviico-marlerino/predictions/tree/dev/.github/workflows). [Factory workflow](https://github.com/verviico-marlerino/factory/blob/dev/docs/workflow.md) defines the common process.
 
-```yaml
-jobs:
-  build:
-    uses: softloom-studio/.github/.github/workflows/ios-build.yml@main
-    with:
-      app: MyApp
-```
+The old templates only echoed TODO and could appear green without building or releasing anything. They now stop explicitly on a low-cost runner. They are not production pipelines and must not be presented as completed integration. Configure and verify a real app-local contract before adopting a reusable implementation; use the actual `verviico-marlerino/.github` owner and an immutable reviewed revision, never the obsolete `softloom-studio` reference.
 
-No secrets live here. Secrets are stored in each repo's GitHub Environments.
+No secrets live in this public repository. App/environment secrets remain isolated. No store upload, deploy or paid native runner is triggered by these templates.
